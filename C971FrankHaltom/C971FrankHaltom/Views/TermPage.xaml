@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971FrankHaltom.Views.TermPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Please select the term or course below. Selected items can be viewed or edited in the side bar." FontSize="Medium" HorizontalOptions="CenterAndExpand" ></Label>
+            <Label Text="Select Term" HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="TermSelection" Title="Choose Term Here" />
+            
+            <Label Text="Select Course" HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="CourseSelection" Title="Choose Course Here" />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971FrankHaltom.Views.TermDetailPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Term Name:" FontSize="Medium" />
+                <Label Text="{Binding Text}" FontSize="Small"/>
+                <Label Text="Start Date:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="End Date:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="Course1:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="Course2:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="Course3:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="Course4:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="Course5:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label Text="Course6:" FontSize="Medium" />
+                <Label Text="{Binding Description}" FontSize="Small"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971FrankHaltom.Views.AddCoursePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="CourseTitle:" FontSize="Medium" />
+                <Entry x:Name="CourseTitle" Placeholder="" />
+                <Label Text="Start Date:" FontSize="Medium" />
+                <DatePicker  x:Name="StartDate" />
+                <Label Text="End Date:" FontSize="Medium" />
+                <DatePicker  x:Name="EndDate" />
+                <Label Text="StatusOfCourse" FontSize="Medium" />
+                <Picker x:Name="CourseStatus" Title="" />
+                <Label Text="CourseNotes" FontSize="Medium" />
+                <Label Text="InstructorName" FontSize="Medium" />
+                <Picker x:Name="InstructorName" Title="" />
+                <Label Text="InstructorPhone" FontSize="Medium" />
+                <Entry x:Name="InstructorPhone" Placeholder="" />
+                <Label Text="InstructorEmail " FontSize="Medium" />
+                <Entry x:Name="InstructorEmail" Placeholder="" />
+                <Label Text="ObjectiveAssesmentName" FontSize="Medium" />
+                <Entry x:Name="ObjectiveAssesmentName" Placeholder="" />
+                <Label Text="ObjectiveAssesmentDueDate" FontSize="Medium" />
+                <DatePicker x:Name="ObjectiveAssesmentDueDate" />
+                <Label Text="PerformanceAssesmentName" FontSize="Medium" />
+                <Entry x:Name="PerformanceAssesmentName" Placeholder="" />
+                <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
+                <DatePicker x:Name="PerformanceAssesmentDueDate"/>
+                <Editor AutoSize="TextChanges" x:Name="CourseNotes" Placeholder="" />
+                <Button x:Name="SaveBtn" Text="Save" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
