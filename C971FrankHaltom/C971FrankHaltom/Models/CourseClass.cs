@@ -33,10 +33,25 @@ namespace C971FrankHaltom.Models
 
             public DateTime PerformanceAssesmentDueDate { get; set; }
 
+        public CourseClass(string courseTitle, DateTime courseStartDate, DateTime courseEndtDate, string statusOfCourse, string courseNotes, string instructorName, string instructorPhone, string instructorEmail, string objectiveAssesmentName, DateTime objectiveAssesmentDueDate, string performanceAssesmentName, DateTime performanceAssesmentDueDate)
+        {
+            CourseTitle = courseTitle;
+            CourseStartDate = courseStartDate;
+            CourseEndtDate = courseEndtDate;
+            StatusOfCourse = statusOfCourse;
+            CourseNotes = courseNotes;
+            InstructorName = instructorName;
+            InstructorPhone = instructorPhone;
+            InstructorEmail = instructorEmail;
+            ObjectiveAssesmentName = objectiveAssesmentName;
+            ObjectiveAssesmentDueDate = objectiveAssesmentDueDate;
+            PerformanceAssesmentName = performanceAssesmentName;
+            PerformanceAssesmentDueDate = performanceAssesmentDueDate;
+        }
 
-
-
-           
+        public CourseClass()
+        {
+        }
     }
 
 }

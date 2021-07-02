@@ -22,7 +22,22 @@ namespace C971FrankHaltom.Models
             public int Course4 { get; set; }
             public int Course5 { get; set; }
             public int Course6 { get; set; }
-            
-        
+
+        public TermClass(string termTitle, DateTime termStartDate, DateTime termEndtDate, int course1, int course2, int course3, int course4, int course5, int course6)
+        {
+            TermTitle = termTitle;
+            TermStartDate = termStartDate;
+            TermEndtDate = termEndtDate;
+            Course1 = course1;
+            Course2 = course2;
+            Course3 = course3;
+            Course4 = course4;
+            Course5 = course5;
+            Course6 = course6;
+        }
+
+        public TermClass()
+        {
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using C971FrankHaltom.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,22 @@ namespace C971FrankHaltom.Views
     {
         public TermPage()
         {
+            SqlLiteDatabaseService dataService = new SqlLiteDatabaseService();
             InitializeComponent();
+
+            //term picker list
+            var TermList = dataService.GetTerms();
+            var CourseList = dataService.GetCourses();
+            TermSelection.ItemsSource = TermList;
+            CourseSelection.ItemsSource = (System.Collections.IList)dataService.GetCourse();
+            AppShell.SelectedTerm = TermSelection.SelectedIndex;
+            AppShell.SelectedCourse = CourseSelection.SelectedIndex;
+
+
+            //class picker list
+
+
         }
+
     }
 }

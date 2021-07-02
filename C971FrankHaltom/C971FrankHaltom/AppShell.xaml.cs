@@ -9,11 +9,21 @@ namespace C971FrankHaltom
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {
+       static public int SelectedTerm;
+        static public int SelectedCourse;
         public AppShell()
         {
             InitializeComponent();
-            var dataService = new SqlLiteDatabaseService();
+            
+
+
+
+            //create database
+            SqlLiteDatabaseService dataService = new SqlLiteDatabaseService();
             dataService.Initialize();
+            dataService.BuildData();
+
+            //create routes to pages
             Routing.RegisterRoute(nameof(TermPage), typeof(TermPage));
             Routing.RegisterRoute(nameof(AddTermPage), typeof(AddTermPage));            
             Routing.RegisterRoute(nameof(TermDetailPage), typeof(TermDetailPage));
