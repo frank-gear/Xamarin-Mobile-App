@@ -17,10 +17,19 @@ namespace C971FrankHaltom.Services
                 return;
 
             //path to db
-            var databasePath = Path.Combine(Xamarin.Essentials.FileSystem.AppDataDirectory, "TermData.db");
+            string databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TermData.db3");
+            //var databasePath = Path.Combine(Xamarin.Essentials.FileSystem.AppDataDirectory, "TermData.db");
             db = new SQLiteAsyncConnection(databasePath);
             await db.CreateTableAsync<TermClass>();
             await db.CreateTableAsync<CourseClass>();
+            
+            await AddTerm("Term 1", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), 0, 1, 2, 3, 4, 5);
+            await ModifyCourse("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("History101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Sarah", "(888)888-8888", "teach3@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Dancing101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Jess", "(222)222-2222", "teach5@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Lit101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Larry", "(666)666-6666", "teach1@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Baseball", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Tad", "(777)777-7777", "teach2@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Math101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Barry", "(999)999-9999", "teach4@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
         }
         //term functions
         public static async Task AddTerm(string termTitle, DateTime termStartDate, DateTime termEndtDate, int course1, int course2, int course3, int course4, int course5, int course6)
@@ -49,7 +58,7 @@ namespace C971FrankHaltom.Services
 
         }
 
-        public static async Task<IEnumerable<TermClass>> GetTermList()
+        public static async Task<IList<TermClass>> GetTermList()
         {
             await Init();
             var termList = await db.Table<TermClass>().ToListAsync();
@@ -71,7 +80,7 @@ namespace C971FrankHaltom.Services
             var course = await db.GetAsync<CourseClass>(id);
             return course;
         }
-        public static async Task<IEnumerable<CourseClass>> GetCourseList()
+        public static async Task<IList<CourseClass>> GetCourseList()
         {
             await Init();
             var CourseList = await db.Table<CourseClass>().ToListAsync();
@@ -97,6 +106,19 @@ namespace C971FrankHaltom.Services
 
             };
             await db.InsertOrReplaceAsync(course);
+        }
+
+        public static async Task BuildData()
+        {
+            await Init();
+            await AddTerm("Term 1", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), 0, 1, 2, 3, 4, 5);
+            await ModifyCourse("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("History101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Sarah", "(888)888-8888", "teach3@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Dancing101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Jess", "(222)222-2222", "teach5@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Lit101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Larry", "(666)666-6666", "teach1@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Baseball", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Tad", "(777)777-7777", "teach2@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+            await ModifyCourse("Math101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Barry", "(999)999-9999", "teach4@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25));
+
         }
     }
 }

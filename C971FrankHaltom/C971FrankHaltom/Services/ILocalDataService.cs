@@ -7,63 +7,64 @@ using System.Text;
 
 namespace C971FrankHaltom.Services
 {
-    public interface ILocalDataService
-    {
-        void Initialize();
-         List<TermClass> GetTerms();
-        List<CourseClass> GetCourses();
-        void CreateTerm(TermClass term);
+    //public static interface ILocalDataService
+    //{
+    //    void Initialize();
+    //     List<TermClass> GetTerms();
+    //    List<CourseClass> GetCourses();
+    //    void CreateTerm(TermClass term);
 
-        void CreateCourse(CourseClass course);
+    //    void CreateCourse(CourseClass course);
         
-        TermClass GetTerm();
-        void DeleteTerm(TermClass term);
-        CourseClass GetCourse();
-        void ModifyCourse(CourseClass course);
-    }
-    public class SqlLiteDatabaseService : ILocalDataService
+    //    TermClass GetTerm();
+    //    void DeleteTerm(TermClass term);
+    //    CourseClass GetCourse();
+    //    void ModifyCourse(CourseClass course);
+    //}
+    public static class SqlLiteDatabaseService //: ILocalDataService
     {
-        public SQLiteConnection _database;
+        public static SQLiteConnection _database;
 
-        public void Initialize()
+        static public void Initialize()
         {
             if (_database == null)
             {
                 string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TermsAppDb.db3");
                 _database = new SQLiteConnection(dbPath);
+                _database.CreateTable<CourseClass>();
+                _database.CreateTable<TermClass>();
             }
-            _database.CreateTable<CourseClass>();
-            _database.CreateTable<TermClass>();
+            
 
             
         }
 
-        public void CreateTerm(TermClass term)
+        static public void CreateTerm(TermClass term)
         {
             _database.Insert(term);
         }
 
-        public void DeleteTerm(TermClass term)
+        static public void DeleteTerm(TermClass term)
         {
             _database.Execute(query: "DELETE FROM TermClass");
         }
 
-        public CourseClass GetCourse()
+        static public CourseClass GetCourse()
         {
             return _database.Table<CourseClass>().FirstOrDefault();
         }
 
-        public TermClass GetTerm()
+        static public TermClass GetTerm()
         {
             return _database.Table<TermClass>().FirstOrDefault();
         }
 
-        public void ModifyCourse(CourseClass course)
+        static public void ModifyCourse(CourseClass course)
         {
             _database.Update(course);
         }
         //create terms
-        public void BuildData()
+        static public void BuildData()
         {
             //create terms
             CreateTerm(new TermClass("Term 1", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), 0, 1, 2, 3, 4, 5));
@@ -87,17 +88,17 @@ namespace C971FrankHaltom.Services
 
         }
 
-        public void CreateCourse(CourseClass course)
+        static public void CreateCourse(CourseClass course)
         {
             _database.Insert(course);
         }
 
-        public List<TermClass> GetTerms()
+        static public IList<TermClass> GetTermsList()
         {
             return _database.Table<TermClass>().ToList();
         }
 
-        public List<CourseClass> GetCourses()
+        static public IList<CourseClass> GetCoursesList()
         {
             return _database.Table<CourseClass>().ToList();
         }

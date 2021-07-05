@@ -7,7 +7,8 @@
             <Label Text="Please select the term or course below. Selected items can be viewed or edited in the side bar." FontSize="Medium" HorizontalOptions="CenterAndExpand" ></Label>
             <Label Text="Select Term" HorizontalOptions="CenterAndExpand" />
             <Picker x:Name="TermSelection" Title="Choose Term Here" />
-            
+            <Button Text="Delete Term" x:Name="DeleteBtn" Clicked="Delete_Clicked" />
+
             <Label Text="Select Course" HorizontalOptions="CenterAndExpand" />
             <Picker x:Name="CourseSelection" Title="Choose Course Here" />
             

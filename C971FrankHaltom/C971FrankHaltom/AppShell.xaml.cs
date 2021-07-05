@@ -1,4 +1,6 @@
 ﻿using C971FrankHaltom.ViewModels;
+using C971FrankHaltom.Models;
+using System.Threading.Tasks;
 using C971FrankHaltom.Services;
 using C971FrankHaltom.Views;
 using System;
@@ -11,17 +13,19 @@ namespace C971FrankHaltom
     {
        static public int SelectedTerm;
         static public int SelectedCourse;
+        static public TermClass Term;
+        
         public AppShell()
         {
+            SqlLiteDatabaseService.Initialize();
+            SqlLiteDatabaseService.BuildData();
+            //Term = SqlLiteDatabaseService.GetTerm();
             InitializeComponent();
             
 
 
 
-            //create database
-            SqlLiteDatabaseService dataService = new SqlLiteDatabaseService();
-            dataService.Initialize();
-            dataService.BuildData();
+            
 
             //create routes to pages
             Routing.RegisterRoute(nameof(TermPage), typeof(TermPage));

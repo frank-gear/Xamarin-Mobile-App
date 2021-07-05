@@ -9,6 +9,9 @@ namespace C971FrankHaltom.ViewModels
     //[QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class TermViewModel : BaseViewModel
     {
+        
+
+
 
     }
 

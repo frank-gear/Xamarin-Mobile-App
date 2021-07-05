@@ -6,7 +6,7 @@
         <ScrollView>
         <StackLayout>
             <Label Text="Term Title:"/>
-            <Entry x:Name="Termtitle" Placeholder="" />
+            <Entry x:Name="Termtitle" BindingContext="term.TermTitle" Placeholder="" />
             <Label Text="Start Date:"/>
             <DatePicker x:Name="StartDate"/>
             <Label Text="End Date:"/>
@@ -23,7 +23,7 @@
             <Picker x:Name="Course5" Title="" />
             <Label Text="Course6:"/>
             <Picker x:Name="Course6" Title="" />
-            <Button x:Name="SaveBtn" Text="Save" />
+            <Button x:Name="SaveBtn" Clicked="SaveBtn_Clicked" Text="Save" />
 
 
             </StackLayout>
