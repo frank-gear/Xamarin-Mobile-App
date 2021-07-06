@@ -6,23 +6,23 @@
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
                 <Label Text="Term Name:" FontSize="Medium" />
-                <Label Text="{Binding Text}" FontSize="Small"/>
+                <Label x:Name="Termtitle" FontSize="Small"/>
                 <Label Text="Start Date:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="StartDate" FontSize="Small"/>
                 <Label Text="End Date:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="EndDate" FontSize="Small"/>
                 <Label Text="Course1:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="Course1" FontSize="Small"/>
                 <Label Text="Course2:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="Course2" FontSize="Small"/>
                 <Label Text="Course3:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="Course3" FontSize="Small"/>
                 <Label Text="Course4:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="Course4" FontSize="Small"/>
                 <Label Text="Course5:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="Course5" FontSize="Small"/>
                 <Label Text="Course6:" FontSize="Medium" />
-                <Label Text="{Binding Description}" FontSize="Small"/>
+                <Label x:Name="Course6" FontSize="Small"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

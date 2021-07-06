@@ -49,14 +49,19 @@ namespace C971FrankHaltom.Services
             _database.Execute(query: "DELETE FROM TermClass");
         }
 
-        static public CourseClass GetCourse()
+        static public CourseClass GetCourse(int id)
         {
-            return _database.Table<CourseClass>().FirstOrDefault();
+            return _database.Get<CourseClass>(id);
         }
 
         static public TermClass GetTerm()
         {
             return _database.Table<TermClass>().FirstOrDefault();
+        }
+
+        static public void ModifyTerm(TermClass term)
+        {
+            _database.Update(term);
         }
 
         static public void ModifyCourse(CourseClass course)

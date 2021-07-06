@@ -5,13 +5,13 @@
     <ContentPage.Content>
         <ScrollView> 
         <StackLayout>
-            <Label Text="CourseTitle:" FontSize="Medium" />
-            <Entry x:Name="CourseTitle" Placeholder="" />
-            <Label Text="Start Date:" FontSize="Medium" />
-            <DatePicker  x:Name="StartDate" />
-            <Label Text="End Date:" FontSize="Medium" />
-            <DatePicker  x:Name="EndDate" />
-            <Label Text="StatusOfCourse" FontSize="Medium" />
+                <Label Text="CourseTitle:" FontSize="Medium" />
+                <Entry x:Name="CourseTitle" FontSize="Small"/>
+                <Label Text="Start Date:" FontSize="Medium" />
+                <DatePicker x:Name="StartDate" FontSize="Small"/>
+                <Label Text="End Date:" FontSize="Medium" />
+                <DatePicker x:Name="EndDate" FontSize="Small"/>
+                <Label Text="StatusOfCourse" FontSize="Medium" />
                 <Picker x:Name="CourseStatus" Title="" >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -22,23 +22,24 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-            <Label Text="CourseNotes" FontSize="Medium" />
-            <Label Text="InstructorName" FontSize="Medium" />
-            <Picker x:Name="InstructorName" Title="" />
-            <Label Text="InstructorPhone" FontSize="Medium" />
-            <Entry x:Name="InstructorPhone" Placeholder="" />
-            <Label Text="InstructorEmail " FontSize="Medium" />
-            <Entry x:Name="InstructorEmail" Placeholder="" />
-            <Label Text="ObjectiveAssesmentName" FontSize="Medium" />
-            <Entry x:Name="ObjectiveAssesmentName" Placeholder="" />
-            <Label Text="ObjectiveAssesmentDueDate" FontSize="Medium" />
-            <DatePicker x:Name="ObjectiveAssesmentDueDate" />
-            <Label Text="PerformanceAssesmentName" FontSize="Medium" />
-            <Entry x:Name="PerformanceAssesmentName" Placeholder="" />
-            <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
-            <DatePicker x:Name="PerformanceAssesmentDueDate"/>
-            <Editor AutoSize="TextChanges" x:Name="CourseNotes" Placeholder="" />
-            <Button x:Name="SaveBtn" Text="Save" />
+                <Label Text="CourseNotes" FontSize="Medium" />
+                <Entry x:Name="Notes" FontSize="Small"/>
+                <Label Text="InstructorName" FontSize="Medium" />
+                <Entry x:Name="Instructorname" FontSize="Small"/>
+                <Label Text="InstructorPhone" FontSize="Medium" />
+                <Entry x:Name="instructorPhone" FontSize="Small"/>
+                <Label Text="InstructorEmail " FontSize="Medium" />
+                <Entry x:Name="Instructoremail" FontSize="Small"/>
+                <Label Text="ObjectiveAssesmentName" FontSize="Medium" />
+                <Entry x:Name="Objectivename" FontSize="Small"/>
+                <Label Text="ObjectiveAssesmentDueDate" FontSize="Medium" />
+                <DatePicker x:Name="ObjectiveDueDate" FontSize="Small"/>
+                <Label Text="PerformanceAssesmentName" FontSize="Medium" />
+                <Entry x:Name="PreformanceName" FontSize="Small"/>
+                <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
+                <DatePicker x:Name="PreformanceDueDate" FontSize="Small"/>
+
+                <Button x:Name="SaveBtn" Clicked="SaveBtn_Clicked" Text="Save" />
 
             </StackLayout>
             </ScrollView>

@@ -6,29 +6,29 @@
         <ScrollView>
             <StackLayout>
             <Label Text="CourseTitle:" FontSize="Medium" />
-            <Label Text="{Binding Text}" FontSize="Small"/>
+                <Label x:Name="CourseTitle" FontSize="Small"/>
             <Label Text="Start Date:" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="StartDate" FontSize="Small"/>
             <Label Text="End Date:" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="EndDate" FontSize="Small"/>
             <Label Text="StatusOfCourse" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="StatusOfCourse" FontSize="Small"/>
             <Label Text="CourseNotes" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="Notes" FontSize="Small"/>
             <Label Text="InstructorName" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="Instructorname" FontSize="Small"/>
             <Label Text="InstructorPhone" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="instructorPhone" FontSize="Small"/>
             <Label Text="InstructorEmail " FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="Instructoremail" FontSize="Small"/>
             <Label Text="ObjectiveAssesmentName" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="Objectivename" FontSize="Small"/>
             <Label Text="ObjectiveAssesmentDueDate" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="ObjectiveDueDate" FontSize="Small"/>
             <Label Text="PerformanceAssesmentName" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="PreformanceName" FontSize="Small"/>
             <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="PreformanceDueDate" FontSize="Small"/>
 
         </StackLayout>
             </ScrollView>

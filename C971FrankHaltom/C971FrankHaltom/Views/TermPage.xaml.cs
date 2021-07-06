@@ -1,4 +1,5 @@
 ﻿using System;
+using C971FrankHaltom.Views;
 using C971FrankHaltom.Models;
 using C971FrankHaltom.Services;
 using System.Collections.Generic;
@@ -14,8 +15,20 @@ namespace C971FrankHaltom.Views
     public partial class TermPage : ContentPage
     {
         public static IList<Models.TermClass> termList;
+        public static IList<Models.CourseClass> courseList;
+        public static CourseClass SelectedCourse;
+        public static TermClass SelectedTerm;
 
-         public void UpdatePicker()
+        public void UpdateCourseList()
+        {
+            courseList = SqlLiteDatabaseService.GetCoursesList();
+            CourseSelection.ItemsSource = (System.Collections.IList)courseList;
+            AddTermPage.addCourseList = SqlLiteDatabaseService.GetCoursesList();
+            
+
+        }
+
+         public  void UpdateTermPicker()
         {
             termList = SqlLiteDatabaseService.GetTermsList();
             TermSelection.ItemsSource = (System.Collections.IList)termList;
@@ -27,12 +40,14 @@ namespace C971FrankHaltom.Views
             
             InitializeComponent();
             
-            termList = SqlLiteDatabaseService.GetTermsList();
-            TermSelection.ItemsSource = (System.Collections.IList)termList;
-           
-            TermSelection.ItemDisplayBinding = new Binding("TermTitle");
-            AppShell.SelectedTerm = TermSelection.SelectedIndex;
-            AppShell.SelectedCourse = CourseSelection.SelectedIndex;
+            //term list setup
+            UpdateTermPicker();
+
+            //course list setup
+            UpdateCourseList();
+            
+           SelectedTerm = (TermClass)TermSelection.SelectedItem;
+           SelectedCourse = (CourseClass)CourseSelection.SelectedItem;
 
             
 
@@ -55,7 +70,7 @@ namespace C971FrankHaltom.Views
                 //var termid = selectedTerm.TermId;
                 SqlLiteDatabaseService.DeleteTerm(selectedTerm);
 
-                UpdatePicker();
+                UpdateTermPicker();
 
 
 
