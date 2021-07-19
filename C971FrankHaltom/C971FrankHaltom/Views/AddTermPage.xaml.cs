@@ -16,7 +16,7 @@ namespace C971FrankHaltom.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddTermPage : ContentPage
     {
-        TermClass addTerm;
+        
         CourseClass selectCourse;
         public static IList<Models.CourseClass> addCourseList;
 
@@ -35,6 +35,7 @@ namespace C971FrankHaltom.Views
             Course3.ItemsSource = (System.Collections.IList)addCourseList;
             Course4.ItemsSource = (System.Collections.IList)addCourseList;
             Course5.ItemsSource = (System.Collections.IList)addCourseList;
+            Course6.ItemsSource = (System.Collections.IList)addCourseList;
         }
         private void SaveBtn_Clicked(object sender, EventArgs e)
         {
@@ -45,6 +46,7 @@ namespace C971FrankHaltom.Views
 
             else
                     {
+                        TermClass addTerm = new TermClass();
                         addTerm.TermTitle = Termtitle.Text;
                         addTerm.TermStartDate = StartDate.Date;
                         addTerm.TermEndtDate = EndDate.Date;

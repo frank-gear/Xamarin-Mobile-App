@@ -5,7 +5,6 @@ using C971FrankHaltom.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C971FrankHaltom.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,10 +17,10 @@ namespace C971FrankHaltom.Views
         public CourseDetailsPage()
         {
             InitializeComponent();
-            DisplayData();
+            OnAppearing();
         }
 
-        public void DisplayData()
+        protected override void OnAppearing()
         {
             if(TermPage.SelectedCourse == null)
             {
@@ -47,6 +46,20 @@ namespace C971FrankHaltom.Views
             ObjectiveDueDate.Text = CourseDetails.ObjectiveAssesmentDueDate.ToString();
             PreformanceName.Text = CourseDetails.PerformanceAssesmentName;
             PreformanceDueDate.Text = CourseDetails.PerformanceAssesmentDueDate.ToString();
+        }
+        private void ShareNotes_Clicked(object sender, EventArgs e)
+        {
+            if (emailList.Count > 0)
+            {
+                ShareNotes message = new ShareNotes();
+                //sms.SendSms(currentCourse.Notes, InstructorPhone.Text);
+                message.SendEmail("'Student Name' - " + currentCourse.Name + " Notes", currentCourse.Notes, emailList);
+                EmailList.Text = "";
+            }
+            else
+            {
+                DisplayAlert("No Emails Selected", "Enter email address(es) to send notes to.", "OK");
+            }
         }
     }
 }

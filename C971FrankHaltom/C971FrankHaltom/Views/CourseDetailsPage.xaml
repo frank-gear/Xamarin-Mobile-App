@@ -13,8 +13,6 @@
             <Label x:Name="EndDate" FontSize="Small"/>
             <Label Text="StatusOfCourse" FontSize="Medium" />
             <Label x:Name="StatusOfCourse" FontSize="Small"/>
-            <Label Text="CourseNotes" FontSize="Medium" />
-            <Label x:Name="Notes" FontSize="Small"/>
             <Label Text="InstructorName" FontSize="Medium" />
             <Label x:Name="Instructorname" FontSize="Small"/>
             <Label Text="InstructorPhone" FontSize="Medium" />
@@ -29,8 +27,19 @@
             <Label x:Name="PreformanceName" FontSize="Small"/>
             <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
             <Label x:Name="PreformanceDueDate" FontSize="Small"/>
+            <Label x:Name="Notes" FontSize="Medium"/>
+                <Label Text="CourseNotes" FontSize="Medium" />
+                <Label Text="email to share notes" FontSize="Medium"/>
+                <Button x:Name="AddEmailButton"
+                                Text="Add"
+                                BackgroundColor="Yellow"
+                                TextColor="Black"
+                                HeightRequest="50"
+                                WidthRequest="100"
+                                Grid.Row="1"
+                                Clicked="AddEmailButton_Clicked"/>
 
-        </StackLayout>
+            </StackLayout>
             </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -13,7 +13,7 @@ namespace C971FrankHaltom
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            
             MainPage = new AppShell();
         }
 

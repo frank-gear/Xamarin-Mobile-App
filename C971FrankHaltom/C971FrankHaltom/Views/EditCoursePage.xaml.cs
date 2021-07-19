@@ -5,7 +5,6 @@ using C971FrankHaltom.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C971FrankHaltom.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

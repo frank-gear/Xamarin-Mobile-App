@@ -1,5 +1,4 @@
-﻿using C971FrankHaltom.ViewModels;
-using C971FrankHaltom.Models;
+﻿using C971FrankHaltom.Models;
 using System.Threading.Tasks;
 using C971FrankHaltom.Services;
 using C971FrankHaltom.Views;
@@ -18,7 +17,7 @@ namespace C971FrankHaltom
         public AppShell()
         {
             SqlLiteDatabaseService.Initialize();
-            SqlLiteDatabaseService.BuildData();
+            SqlLiteDatabaseService.datacheck();
             //Term = SqlLiteDatabaseService.GetTerm();
             InitializeComponent();
             

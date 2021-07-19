@@ -5,7 +5,6 @@ using C971FrankHaltom.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C971FrankHaltom.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,22 +18,10 @@ namespace C971FrankHaltom.Views
         public static CourseClass SelectedCourse;
         public static TermClass SelectedTerm;
 
-        public void UpdateCourseList()
-        {
-            courseList = SqlLiteDatabaseService.GetCoursesList();
-            CourseSelection.ItemsSource = (System.Collections.IList)courseList;
-            AddTermPage.addCourseList = SqlLiteDatabaseService.GetCoursesList();
-            
+       
 
-        }
-
-         public  void UpdateTermPicker()
-        {
-            termList = SqlLiteDatabaseService.GetTermsList();
-            TermSelection.ItemsSource = (System.Collections.IList)termList;
-            TermSelection.SelectedIndex = -1;
-
-        }
+       
+        
         public TermPage()
         {
             
@@ -45,17 +32,37 @@ namespace C971FrankHaltom.Views
 
             //course list setup
             UpdateCourseList();
-            
-           SelectedTerm = (TermClass)TermSelection.SelectedItem;
-           SelectedCourse = (CourseClass)CourseSelection.SelectedItem;
-
-            
-
-
-
+                    
             //class picker list
 
 
+        }
+        public void UpdateCourseList()
+        {
+            courseList = SqlLiteDatabaseService.GetCoursesList();
+            CourseSelection.ItemsSource = (System.Collections.IList)courseList;
+            AddTermPage.addCourseList = SqlLiteDatabaseService.GetCoursesList();
+            CourseSelection.ItemDisplayBinding = new Binding("CourseTitle");
+
+
+        }
+
+        public void UpdateTermPicker()
+        {
+            termList = SqlLiteDatabaseService.GetTermsList();
+            TermSelection.ItemsSource = (System.Collections.IList)termList;
+            TermSelection.SelectedIndex = -1;
+            TermSelection.ItemDisplayBinding = new Binding("TermTitle");
+
+
+        }
+        private  void TermSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedTerm = (TermClass)TermSelection.SelectedItem;
+        }
+        private void CourseSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedCourse = (CourseClass)CourseSelection.SelectedItem;
         }
 
         private async void Delete_Clicked(object sender, EventArgs e)
@@ -75,6 +82,7 @@ namespace C971FrankHaltom.Views
 
 
             }
+         
            
         }
     }
