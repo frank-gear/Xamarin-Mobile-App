@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace C971FrankHaltom.Views
 {
@@ -14,12 +16,23 @@ namespace C971FrankHaltom.Views
     public partial class CourseDetailsPage : ContentPage
     {
         public static CourseClass CourseDetails;
+        private static List<string> send = new List<string>();
+        
         public CourseDetailsPage()
         {
             InitializeComponent();
             OnAppearing();
         }
-
+        public async Task share(string subject, string body, List<string> send)
+        {
+            var email = new EmailMessage
+            {
+                Subject = subject,
+                Body = body,
+                To = send,
+            };
+            await Email.ComposeAsync(email);
+        }
         protected override void OnAppearing()
         {
             if(TermPage.SelectedCourse == null)
@@ -47,18 +60,20 @@ namespace C971FrankHaltom.Views
             PreformanceName.Text = CourseDetails.PerformanceAssesmentName;
             PreformanceDueDate.Text = CourseDetails.PerformanceAssesmentDueDate.ToString();
         }
-        private void ShareNotes_Clicked(object sender, EventArgs e)
+        private  void sendemail_Clicked(object sender, EventArgs e)
         {
-            if (emailList.Count > 0)
+            
+            if (emailshare.Text == null)
             {
-                ShareNotes message = new ShareNotes();
-                //sms.SendSms(currentCourse.Notes, InstructorPhone.Text);
-                message.SendEmail("'Student Name' - " + currentCourse.Name + " Notes", currentCourse.Notes, emailList);
-                EmailList.Text = "";
+                 DisplayAlert("endter email", "enter an email address", "OK");
             }
             else
             {
-                DisplayAlert("No Emails Selected", "Enter email address(es) to send notes to.", "OK");
+                send.Add(emailshare.Text);
+                var Subject = CourseTitle.Text + " Notes";
+                var Body = Notes.Text;
+                 share(Subject, Body, send);
+                
             }
         }
     }

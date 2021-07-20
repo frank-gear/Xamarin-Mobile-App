@@ -18,6 +18,22 @@ namespace C971FrankHaltom.Views
             InitializeComponent();
            
         }
+
+        private void StartSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+
+        }
+
+        private void EndSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        }
+
+
+
+
+
         private void OnPageAppearing(object sender, Page e)
         {
             if (TermPage.SelectedTerm == null)

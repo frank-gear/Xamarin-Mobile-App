@@ -27,17 +27,11 @@
             <Label x:Name="PreformanceName" FontSize="Small"/>
             <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
             <Label x:Name="PreformanceDueDate" FontSize="Small"/>
-            <Label x:Name="Notes" FontSize="Medium"/>
-                <Label Text="CourseNotes" FontSize="Medium" />
-                <Label Text="email to share notes" FontSize="Medium"/>
-                <Button x:Name="AddEmailButton"
-                                Text="Add"
-                                BackgroundColor="Yellow"
-                                TextColor="Black"
-                                HeightRequest="50"
-                                WidthRequest="100"
-                                Grid.Row="1"
-                                Clicked="AddEmailButton_Clicked"/>
+            <Label Text="CourseNotes" FontSize="Medium" />
+            <Label x:Name="Notes" FontSize="Small"/>            
+            <Label Text="email to share notes" FontSize="Medium"/>
+            <Entry Placeholder="Enter email here to share" x:Name="emailshare"/>
+            <Button x:Name="sendemail" Text="send" BackgroundColor="Blue" TextColor="Black" HeightRequest="50" WidthRequest="100" Grid.Row="1" Clicked="sendemail_Clicked"/>
 
             </StackLayout>
             </ScrollView>
