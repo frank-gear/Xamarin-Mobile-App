@@ -16,6 +16,7 @@ namespace C971FrankHaltom.Views
         public EditCoursePage()
         {
             InitializeComponent();
+            OnAppearing();
            
         }
 
@@ -34,9 +35,9 @@ namespace C971FrankHaltom.Views
 
 
 
-        private void OnPageAppearing(object sender, Page e)
+        protected override void OnAppearing()
         {
-            if (TermPage.SelectedTerm == null)
+            if (TermPage.SelectedCourse == null)
             {
                 DisplayAlert("Course Edit", " Please Select Course to edit", "ok");
             }
