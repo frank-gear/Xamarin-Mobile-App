@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.LocalNotifications;
 
 namespace C971FrankHaltom.Views
 {
@@ -20,16 +21,7 @@ namespace C971FrankHaltom.Views
            
         }
 
-        private void StartSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-
-
-        }
-
-        private void EndSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-
-        }
+        
 
 
 
@@ -59,6 +51,7 @@ namespace C971FrankHaltom.Views
 
         private void SaveBtn_Clicked(object sender, EventArgs e)
         {
+
             if(CourseTitle.Text == null || Instructorname.Text == null || Instructoremail.Text == null
                 || instructorPhone.Text == null || Objectivename.Text == null || PreformanceName.Text == null)
             {
@@ -66,6 +59,22 @@ namespace C971FrankHaltom.Views
             }
             else
             {
+                if (StartSwitch.IsToggled)
+                {
+                    CrossLocalNotifications.Current.Show("CourseTitle.Text", "Start Date", 101, StartDate.Date);
+                }
+                if (endSwitch.IsToggled)
+                {
+                    CrossLocalNotifications.Current.Show("CourseTitle.Text", "End Date", 101, EndDate.Date);
+                }
+                if (StartSwitch.IsToggled)
+                {
+                    CrossLocalNotifications.Current.Show("Objectivename.Text", "Due Date", 101, ObjectiveDueDate.Date);
+                }
+                if (StartSwitch.IsToggled)
+                {
+                    CrossLocalNotifications.Current.Show("PreformanceName.Text", "Due Date", 101, PreformanceDueDate.Date);
+                }
                 CourseClass course;
                 course = TermPage.SelectedCourse;
                 course.CourseTitle = CourseTitle.Text;

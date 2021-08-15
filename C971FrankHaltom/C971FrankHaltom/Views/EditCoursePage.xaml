@@ -9,30 +9,13 @@
                 <Entry x:Name="CourseTitle" FontSize="Small"/>
                 <Label Text="Start Date:" FontSize="Medium" />
                 <DatePicker x:Name="StartDate" FontSize="Small"/>
+                <Label Text="Set Notification for Start date" FontSize="Medium" />
+                <Switch x:Name="StartSwitch"/>
                 <Label Text="End Date:" FontSize="Medium" />
                 <DatePicker x:Name="EndDate" FontSize="Small"/>
+                <Label Text="Set Notification for end date" FontSize="Medium" />
+                <Switch x:Name="endSwitch"/>
                 <Label Text="StatusOfCourse" FontSize="Medium" />
-
-                <Label Text="Set Notifications"
-                       HorizontalOptions="Center"
-                       Padding="0,20,0,0"/>
-                <Label Text="Start"
-                           HorizontalTextAlignment="Center"/>
-                    <Label Text="End"
-                           Grid.Column="1"
-                           HorizontalTextAlignment="Center"/>
-                    <Switch x:Name="StartSwitch"
-                        Grid.Row="1"
-                            HorizontalOptions="Center"
-                            OnColor="Green"
-                            PropertyChanged="StartSwitch_PropertyChanged"/>
-                <Switch x:Name="EndSwitch"
-                        Grid.Column="1"
-                            Grid.Row="1"
-                            HorizontalOptions="Center"
-                            OnColor="Green"
-                            PropertyChanged="EndSwitch_PropertyChanged"/>
-                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
                 <Picker x:Name="CourseStatus" Title="" >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -55,10 +38,15 @@
                 <Entry x:Name="Objectivename" FontSize="Small"/>
                 <Label Text="ObjectiveAssesmentDueDate" FontSize="Medium" />
                 <DatePicker x:Name="ObjectiveDueDate" FontSize="Small"/>
+                <Label Text="Set Notification for Objective Due date" FontSize="Medium" />
+                <Switch x:Name="ObjectivetSwitch"/>
                 <Label Text="PerformanceAssesmentName" FontSize="Medium" />
                 <Entry x:Name="PreformanceName" FontSize="Small"/>
                 <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
                 <DatePicker x:Name="PreformanceDueDate" FontSize="Small"/>
+                <Label Text="Set Notification for Performance date" FontSize="Medium" />
+                <Switch x:Name="PreformanceSwitch"/>
+                
 
                 <Button x:Name="SaveBtn" Clicked="SaveBtn_Clicked" Text="Save" />
 

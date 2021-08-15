@@ -12,7 +12,7 @@
                 <Label Text="End Date:"/>
                 <DatePicker x:Name="EndDate"/>
                 <Label Text="Course1:"/>
-                <Picker x:Name="Course1" Title="" />
+                <Picker x:Name="Course1"  Title="" />
                 <Label Text="Course2:"/>
                 <Picker x:Name="Course2" Title="" />
                 <Label Text="Course3:"/>
