@@ -31,11 +31,17 @@ namespace C971FrankHaltom.Views
         public void SetPickers()
         {
             Course1.ItemsSource = (System.Collections.IList)addCourseList;
+            Course1.ItemDisplayBinding = new Binding("CourseTitle");
             Course2.ItemsSource = (System.Collections.IList)addCourseList;
+            Course2.ItemDisplayBinding = new Binding("CourseTitle");
             Course3.ItemsSource = (System.Collections.IList)addCourseList;
+            Course3.ItemDisplayBinding = new Binding("CourseTitle");
             Course4.ItemsSource = (System.Collections.IList)addCourseList;
+            Course4.ItemDisplayBinding = new Binding("CourseTitle");
             Course5.ItemsSource = (System.Collections.IList)addCourseList;
+            Course5.ItemDisplayBinding = new Binding("CourseTitle");
             Course6.ItemsSource = (System.Collections.IList)addCourseList;
+            Course6.ItemDisplayBinding = new Binding("CourseTitle");
         }
         private void SaveBtn_Clicked(object sender, EventArgs e)
         {
@@ -64,6 +70,7 @@ namespace C971FrankHaltom.Views
                         addTerm.Course6 = selectCourse.CourseId;
                         SqlLiteDatabaseService.CreateTerm(addTerm);
                         TermPage.termList = SqlLiteDatabaseService.GetTermsList();
+                DisplayAlert("Add Term", " Term Created successfully Please return to the MainPage", "ok");
             }
             
         }

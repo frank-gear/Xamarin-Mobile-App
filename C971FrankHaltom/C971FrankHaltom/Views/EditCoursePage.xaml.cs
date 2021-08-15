@@ -38,7 +38,9 @@ namespace C971FrankHaltom.Views
                 instructorPhone.Text = TermPage.SelectedCourse.InstructorPhone;
                 Instructoremail.Text = TermPage.SelectedCourse.InstructorEmail;
                 PerformancePicker.ItemsSource = performanceassessments;
+                PerformancePicker.ItemDisplayBinding = new Binding("Name");
                 ObjectivePicker.ItemsSource = objectiveeassessments;
+                ObjectivePicker.ItemDisplayBinding = new Binding("Name");
             }           
         }
         bool mchek(string x)
@@ -82,19 +84,19 @@ namespace C971FrankHaltom.Views
             {
                 if (StartSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show("CourseTitle.Text", "Start Date", 101, StartDate.Date);
+                    CrossLocalNotifications.Current.Show(CourseTitle.Text, "Start Date", 101, StartDate.Date);
                 }
                 if (endSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show("CourseTitle.Text", "End Date", 101, EndDate.Date);
+                    CrossLocalNotifications.Current.Show(CourseTitle.Text, "End Date", 101, EndDate.Date);
                 }
                 if (ObjectivetSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show("Objectivename.Text", "Due Date", 101, objectiveeassessments[ObjectivePicker.SelectedIndex].DueDate);
+                    CrossLocalNotifications.Current.Show(objectiveeassessments[ObjectivePicker.SelectedIndex].Name, "Due Date", 101, objectiveeassessments[ObjectivePicker.SelectedIndex].DueDate);
                 }
                 if (PreformanceSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show("PreformanceName.Text", "Due Date", 101, performanceassessments[PerformancePicker.SelectedIndex].DueDate);
+                    CrossLocalNotifications.Current.Show(performanceassessments[PerformancePicker.SelectedIndex].Name, "Due Date", 101, performanceassessments[PerformancePicker.SelectedIndex].DueDate);
                 }
                 CourseClass course;
                 course = TermPage.SelectedCourse;
@@ -109,6 +111,7 @@ namespace C971FrankHaltom.Views
                 course.PerformanceId = performanceassessments[PerformancePicker.SelectedIndex].AssesmentId;
                 course.PerformanceId = objectiveeassessments[ObjectivePicker.SelectedIndex].AssesmentId;
                 SqlLiteDatabaseService.ModifyCourse(course);
+                DisplayAlert("Course Edit", " Modified successfully Please return to the MainPage", "ok");
             }
             
 

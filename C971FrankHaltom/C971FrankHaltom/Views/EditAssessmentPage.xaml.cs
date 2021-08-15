@@ -43,7 +43,16 @@ namespace C971FrankHaltom.Views
             }
             else
             {
-
+                if (Duedateswitch.IsToggled)
+                {
+                    Plugin.LocalNotifications.CrossLocalNotifications.Current.Show(AssessmentName.Text, "Due Date", 101, DueDate.Date);
+                }
+                AssessmentClass assessment = new AssessmentClass();
+                assessment = assessments[Asses.SelectedIndex];
+                assessment.Name = AssessmentName.Text;
+                assessment.DueDate = DueDate.Date;
+                SqlLiteDatabaseService.ModifyAssessment(assessment);
+                DisplayAlert("Assessment Edit", " Modified successfully Please return to the MainPage", "ok");
             }
         }
     }

@@ -70,6 +70,7 @@ namespace C971FrankHaltom.Views
                 addTerm.Course6 = selectCourse.CourseId;
                 SqlLiteDatabaseService.ModifyTerm(addTerm);
                 TermPage.termList = SqlLiteDatabaseService.GetTermsList();
+                DisplayAlert("Term Edit", " Modified successfully Please return to the MainPage", "ok");
             }
 
         }

@@ -29,8 +29,9 @@ namespace C971FrankHaltom.Services
         {
             if (_database == null)
             {
-                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TermAppsDb.db3");
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TermmAppsDb.db3");
                 _database = new SQLiteConnection(dbPath);
+                _database.CreateTable<AssessmentClass>();
                 _database.CreateTable<CourseClass>();
                 _database.CreateTable<TermClass>();
                 
@@ -106,6 +107,10 @@ namespace C971FrankHaltom.Services
         static public void ModifyCourse(CourseClass course)
         {
             _database.Update(course);
+        }
+        static public void ModifyAssessment(AssessmentClass assessment)
+        {
+            _database.Update(assessment);
         }
         //create terms
         static public void BuildData()
