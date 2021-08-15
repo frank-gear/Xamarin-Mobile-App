@@ -55,10 +55,10 @@ namespace C971FrankHaltom.Views
             Instructorname.Text = CourseDetails.InstructorName;
             instructorPhone.Text = CourseDetails.InstructorPhone;
             Instructoremail.Text = CourseDetails.InstructorEmail;
-            Objectivename.Text = CourseDetails.ObjectiveAssesmentName;
-            ObjectiveDueDate.Text = CourseDetails.ObjectiveAssesmentDueDate.ToString();
-            PreformanceName.Text = CourseDetails.PerformanceAssesmentName;
-            PreformanceDueDate.Text = CourseDetails.PerformanceAssesmentDueDate.ToString();
+            Objectivename.Text = SqlLiteDatabaseService.GetAssessName(CourseDetails.ObjectiveId);
+            ObjectiveDueDate.Text = SqlLiteDatabaseService.GetAssessduedate(CourseDetails.ObjectiveId);
+            PreformanceName.Text = SqlLiteDatabaseService.GetAssessName(CourseDetails.PerformanceId);
+            PreformanceDueDate.Text = SqlLiteDatabaseService.GetAssessduedate(CourseDetails.PerformanceId);
         }
         private  void sendemail_Clicked(object sender, EventArgs e)
         {

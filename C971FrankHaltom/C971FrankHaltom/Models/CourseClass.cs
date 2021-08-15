@@ -25,15 +25,11 @@ namespace C971FrankHaltom.Models
 
             public string InstructorEmail { get; set; }
 
-            public string ObjectiveAssesmentName { get; set; }
+            public int ObjectiveId { get; set; }
+            
+            public int PerformanceId { get; set; }
 
-            public DateTime ObjectiveAssesmentDueDate { get; set; }
-
-            public string PerformanceAssesmentName { get; set; }
-
-            public DateTime PerformanceAssesmentDueDate { get; set; }
-
-        public CourseClass(string courseTitle, DateTime courseStartDate, DateTime courseEndtDate, string statusOfCourse, string courseNotes, string instructorName, string instructorPhone, string instructorEmail, string objectiveAssesmentName, DateTime objectiveAssesmentDueDate, string performanceAssesmentName, DateTime performanceAssesmentDueDate)
+        public CourseClass(string courseTitle, DateTime courseStartDate, DateTime courseEndtDate, string statusOfCourse, string courseNotes, string instructorName, string instructorPhone, string instructorEmail, int Objective, int Performance)
         {
             CourseTitle = courseTitle;
             CourseStartDate = courseStartDate;
@@ -43,10 +39,8 @@ namespace C971FrankHaltom.Models
             InstructorName = instructorName;
             InstructorPhone = instructorPhone;
             InstructorEmail = instructorEmail;
-            ObjectiveAssesmentName = objectiveAssesmentName;
-            ObjectiveAssesmentDueDate = objectiveAssesmentDueDate;
-            PerformanceAssesmentName = performanceAssesmentName;
-            PerformanceAssesmentDueDate = performanceAssesmentDueDate;
+            ObjectiveId = Objective;
+            PerformanceId = Performance;
         }
 
         public CourseClass()

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971FrankHaltom.Views.EditAssessmentPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Select The Assessment below to edit" />
+            <Picker x:Name="Asses" SelectedIndexChanged="Asses_SelectedIndexChanged" />
+            <Label Text="Assessment Name" />
+            <Entry x:Name="AssessmentName" />
+            <Label Text=" Assessment Due Date" />
+            <DatePicker x:Name="DueDate"/>
+            <Label Text="Toggle below to create Notification for this assesment Due Date" />
+            <Switch x:Name="Duedateswitch" IsToggled="false" />
+            <Button Text="Save Changes" x:Name="save" Clicked="save_Clicked" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

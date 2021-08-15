@@ -14,19 +14,14 @@ namespace C971FrankHaltom.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditCoursePage : ContentPage
     {
+        public static List<AssessmentClass> performanceassessments = (List<AssessmentClass>)SqlLiteDatabaseService.GetPerAssessmentsList();
+        public static List<AssessmentClass> objectiveeassessments = (List<AssessmentClass>)SqlLiteDatabaseService.GetObjAssessmentsList();
         public EditCoursePage()
         {
             InitializeComponent();
             OnAppearing();
            
         }
-
-        
-
-
-
-
-
         protected override void OnAppearing()
         {
             if (TermPage.SelectedCourse == null)
@@ -35,27 +30,53 @@ namespace C971FrankHaltom.Views
             }
             else
             {
-                CourseTitle.Placeholder = TermPage.SelectedCourse.CourseTitle;
+                CourseTitle.Text = TermPage.SelectedCourse.CourseTitle;
                 StartDate.Date = TermPage.SelectedCourse.CourseStartDate;
                 EndDate.Date = TermPage.SelectedCourse.CourseEndtDate;
-                Notes.Placeholder = TermPage.SelectedCourse.CourseNotes;
-                Instructorname.Placeholder = TermPage.SelectedCourse.InstructorName;
-                instructorPhone.Placeholder = TermPage.SelectedCourse.InstructorPhone;
-                Instructoremail.Placeholder = TermPage.SelectedCourse.InstructorEmail;
-                Objectivename.Placeholder = TermPage.SelectedCourse.ObjectiveAssesmentName;
-                ObjectiveDueDate.Date = TermPage.SelectedCourse.ObjectiveAssesmentDueDate;
-                PreformanceName.Placeholder = TermPage.SelectedCourse.PerformanceAssesmentName;
-                PreformanceDueDate.Date = TermPage.SelectedCourse.PerformanceAssesmentDueDate;
+                Notes.Text = TermPage.SelectedCourse.CourseNotes;
+                Instructorname.Text = TermPage.SelectedCourse.InstructorName;
+                instructorPhone.Text = TermPage.SelectedCourse.InstructorPhone;
+                Instructoremail.Text = TermPage.SelectedCourse.InstructorEmail;
+                PerformancePicker.ItemsSource = performanceassessments;
+                ObjectivePicker.ItemsSource = objectiveeassessments;
+            }           
+        }
+        bool mchek(string x)
+        {
+            try
+            {
+                var chk = new System.Net.Mail.MailAddress(x);
+                return chk.Address == x;
+            }
+            catch
+            {
+                return false;
             }
         }
 
-        private void SaveBtn_Clicked(object sender, EventArgs e)
+            private void SaveBtn_Clicked(object sender, EventArgs e)
         {
 
             if(CourseTitle.Text == null || Instructorname.Text == null || Instructoremail.Text == null
-                || instructorPhone.Text == null || Objectivename.Text == null || PreformanceName.Text == null)
+                || instructorPhone.Text == null)
             {
                 DisplayAlert("Course Edit", " Please Select fill in all sections", "ok");
+            }
+            if(PerformancePicker.SelectedIndex == -1 || ObjectivePicker.SelectedIndex == -1)
+            {
+                DisplayAlert("Course Edit", " Please select your assessments", "ok");
+            }
+            if (instructorPhone.Text.Any(x => char.IsLetter(x)))
+            {
+                DisplayAlert("Course Edit", " Please only enter numbers for instructor phone number", "ok");
+            }
+            if (instructorPhone.Text.Length != 7 || instructorPhone.Text.Length != 10)
+            {
+                DisplayAlert("Course Edit", " Phone number should  be 7 or 10 digits long", "ok");
+            }
+            if (!mchek(Instructoremail.Text))
+            {
+                DisplayAlert("Course Edit", " Email is not valid", "ok");
             }
             else
             {
@@ -67,13 +88,13 @@ namespace C971FrankHaltom.Views
                 {
                     CrossLocalNotifications.Current.Show("CourseTitle.Text", "End Date", 101, EndDate.Date);
                 }
-                if (StartSwitch.IsToggled)
+                if (ObjectivetSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show("Objectivename.Text", "Due Date", 101, ObjectiveDueDate.Date);
+                    CrossLocalNotifications.Current.Show("Objectivename.Text", "Due Date", 101, objectiveeassessments[ObjectivePicker.SelectedIndex].DueDate);
                 }
-                if (StartSwitch.IsToggled)
+                if (PreformanceSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show("PreformanceName.Text", "Due Date", 101, PreformanceDueDate.Date);
+                    CrossLocalNotifications.Current.Show("PreformanceName.Text", "Due Date", 101, performanceassessments[PerformancePicker.SelectedIndex].DueDate);
                 }
                 CourseClass course;
                 course = TermPage.SelectedCourse;
@@ -85,10 +106,8 @@ namespace C971FrankHaltom.Views
                 course.InstructorPhone = instructorPhone.Text;
                 course.InstructorEmail = Instructoremail.Text;
                 course.StatusOfCourse = CourseStatus.SelectedItem.ToString();
-                course.ObjectiveAssesmentName = Objectivename.Text;
-                course.ObjectiveAssesmentDueDate = ObjectiveDueDate.Date;
-                course.PerformanceAssesmentName = PreformanceName.Text;
-                course.PerformanceAssesmentDueDate = PreformanceDueDate.Date;
+                course.PerformanceId = performanceassessments[PerformancePicker.SelectedIndex].AssesmentId;
+                course.PerformanceId = objectiveeassessments[ObjectivePicker.SelectedIndex].AssesmentId;
                 SqlLiteDatabaseService.ModifyCourse(course);
             }
             

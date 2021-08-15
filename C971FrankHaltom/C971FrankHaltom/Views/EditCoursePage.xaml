@@ -34,17 +34,13 @@
                 <Entry x:Name="instructorPhone" FontSize="Small"/>
                 <Label Text="InstructorEmail " FontSize="Medium" />
                 <Entry x:Name="Instructoremail" FontSize="Small"/>
-                <Label Text="ObjectiveAssesmentName" FontSize="Medium" />
-                <Entry x:Name="Objectivename" FontSize="Small"/>
-                <Label Text="ObjectiveAssesmentDueDate" FontSize="Medium" />
-                <DatePicker x:Name="ObjectiveDueDate" FontSize="Small"/>
-                <Label Text="Set Notification for Objective Due date" FontSize="Medium" />
+                <Label Text="Select Objective Assesment" FontSize="Medium" />
+                <Picker x:Name="ObjectivePicker" />
+                <Label Text="Set Notification for Objective Assessment" FontSize="Medium" />
                 <Switch x:Name="ObjectivetSwitch"/>
-                <Label Text="PerformanceAssesmentName" FontSize="Medium" />
-                <Entry x:Name="PreformanceName" FontSize="Small"/>
-                <Label Text="PerformanceAssesmentDueDate" FontSize="Medium" />
-                <DatePicker x:Name="PreformanceDueDate" FontSize="Small"/>
-                <Label Text="Set Notification for Performance date" FontSize="Medium" />
+                <Label Text="SelectPerformanceAssesment" FontSize="Medium" />
+                <Picker x:Name="PerformancePicker" />
+                <Label Text="Set Notification for Performance Assessment" FontSize="Medium" />
                 <Switch x:Name="PreformanceSwitch"/>
                 
 

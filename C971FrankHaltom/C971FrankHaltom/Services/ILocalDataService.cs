@@ -64,6 +64,13 @@ namespace C971FrankHaltom.Services
             int num = course.CourseId;
             return num;
         }
+        static public int GetAssessId(string name)
+        {
+            AssessmentClass assessment = new AssessmentClass();
+            assessment = _database.Table<AssessmentClass>().Where(i => i.Name == name).FirstOrDefault();
+            int num = assessment.AssesmentId;
+            return num;
+        }
         static public CourseClass GetCourse(int id)
         {
             return _database.Get<CourseClass>(id);
@@ -74,7 +81,18 @@ namespace C971FrankHaltom.Services
             course = _database.Table<CourseClass>().Where(i => i.CourseId == id).FirstOrDefault();
             return course.CourseTitle;
         }
-
+        static public string GetAssessName(int id)
+        {
+            AssessmentClass assessment = new AssessmentClass();
+            assessment = _database.Table<AssessmentClass>().Where(i => i.AssesmentId == id).FirstOrDefault();
+            return assessment.Name;
+        }
+        static public string GetAssessduedate(int id)
+        {
+            AssessmentClass assessment = new AssessmentClass();
+            assessment = _database.Table<AssessmentClass>().Where(i => i.AssesmentId == id).FirstOrDefault();
+            return assessment.DueDate.ToString();
+        }
         static public TermClass GetTerm()
         {
             return _database.Table<TermClass>().FirstOrDefault();
@@ -92,15 +110,16 @@ namespace C971FrankHaltom.Services
         //create terms
         static public void BuildData()
         {
-           
+            // create assessments
+            CreateAssess(new AssessmentClass("MidTermTest", "Objective", new DateTime(2021, 10, 01)));
+            CreateAssess(new AssessmentClass("FinalProject", "Performance", new DateTime(2021, 11, 25)));
             //create classes
-            CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress","Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            CreateCourse(new CourseClass("History101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Sarah", "(888)888-8888", "teach3@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            CreateCourse(new CourseClass("Dancing101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Jess", "(222)222-2222", "teach5@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            CreateCourse(new CourseClass("Lit101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Larry", "(666)666-6666", "teach1@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            CreateCourse(new CourseClass("Baseball", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Tad", "(777)777-7777", "teach2@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            CreateCourse(new CourseClass("Math101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Barry", "(999)999-9999", "teach4@gmail.com", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            //create terms
+            CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress","Do your best!", "Billy Frank Haltom", "4237827613", "bhaltom@wgu.edu", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+            CreateCourse(new CourseClass("History101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Sarah", "8888888888", "teach3@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+            CreateCourse(new CourseClass("Dancing101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Jess", "2222222222", "teach5@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+            CreateCourse(new CourseClass("Lit101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Larry", "6666666666", "teach1@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+            CreateCourse(new CourseClass("Baseball", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Tad", "7777777777", "teach2@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+            CreateCourse(new CourseClass("Math101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Barry", "9999999999", "teach4@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
             CreateTerm(new TermClass("Term 1", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), GetCourseId("MobileAppDevelopment C971"), GetCourseId("History101"), GetCourseId("Dancing101"), GetCourseId("Lit101"), GetCourseId("Baseball"), GetCourseId("Math101")));
             //CreateTerm(new TermClass("Term 2", new DateTime(2021, 12, 01), new DateTime(2022, 03, 01), 6, 7, 8, 9, 10, 11));
 
@@ -118,7 +137,10 @@ namespace C971FrankHaltom.Services
         {
             _database.Insert(course);
         }
-
+        static public void CreateAssess(AssessmentClass assessmentClass)
+        {
+            _database.Insert(assessmentClass);
+        }
         static public IList<TermClass> GetTermsList()
         {
             return _database.Table<TermClass>().ToList();
@@ -127,6 +149,18 @@ namespace C971FrankHaltom.Services
         static public IList<CourseClass> GetCoursesList()
         {
             return _database.Table<CourseClass>().ToList();
+        }
+        static public IList<AssessmentClass> GetAssessmentsList()
+        {
+            return _database.Table<AssessmentClass>().ToList();
+        }
+        static public IList<AssessmentClass> GetObjAssessmentsList()
+        {
+            return _database.Table<AssessmentClass>().Where(i => i.Type == "Objective").ToList();
+        }
+        static public IList<AssessmentClass> GetPerAssessmentsList()
+        {
+            return _database.Table<AssessmentClass>().Where(i => i.Type == "Performance").ToList();
         }
     }
 
