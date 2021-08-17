@@ -29,7 +29,7 @@ namespace C971FrankHaltom.Services
         {
             if (_database == null)
             {
-                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TermmAppsDb.db3");
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TerrmAppsDb.db3");
                 _database = new SQLiteConnection(dbPath);
                 _database.CreateTable<AssessmentClass>();
                 _database.CreateTable<CourseClass>();
