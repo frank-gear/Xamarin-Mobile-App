@@ -45,11 +45,14 @@ namespace C971FrankHaltom.Views
         }
         private void SaveBtn_Clicked(object sender, EventArgs e)
         {
-            if (Termtitle.Text == null || Course1.SelectedIndex == -1 || Course2.SelectedIndex == -1 || Course3.SelectedIndex == -1 || Course4.SelectedIndex == -1 || Course5.SelectedIndex == -1 || Course6.SelectedIndex == -1)
+            if ( string.IsNullOrWhiteSpace(Termtitle.Text)  || Course1.SelectedIndex == -1 || Course2.SelectedIndex == -1 || Course3.SelectedIndex == -1 || Course4.SelectedIndex == -1 || Course5.SelectedIndex == -1 || Course6.SelectedIndex == -1)
             {
                 DisplayAlert("Fill", " Please enter all sections", "ok");
             }
-
+            else if ( StartDate.Date > EndDate.Date)
+            {
+                DisplayAlert("Date Error", " Start date must come before End date", "ok");
+            }
             else
             {
                         TermClass addTerm = new TermClass();

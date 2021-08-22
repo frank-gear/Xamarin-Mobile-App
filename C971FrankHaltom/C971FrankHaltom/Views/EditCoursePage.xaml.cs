@@ -59,12 +59,16 @@ namespace C971FrankHaltom.Views
             private void SaveBtn_Clicked(object sender, EventArgs e)
         {
 
-            if(string.IsNullOrWhiteSpace(CourseTitle.Text) || string.IsNullOrWhiteSpace( Instructorname.Text)  || string.IsNullOrWhiteSpace( Instructoremail.Text)
-                || string.IsNullOrWhiteSpace( instructorPhone.Text))
+            if (string.IsNullOrWhiteSpace(CourseTitle.Text) || string.IsNullOrWhiteSpace(Instructorname.Text) || string.IsNullOrWhiteSpace(Instructoremail.Text)
+                || string.IsNullOrWhiteSpace(instructorPhone.Text))
             {
                 DisplayAlert("Course Edit", " Please Select fill in all sections", "ok");
             }
-            else if(PerformancePicker.SelectedIndex == -1 || ObjectivePicker.SelectedIndex == -1 || CourseStatus.SelectedIndex == -1)
+            else if (StartDate.Date > EndDate.Date)
+            {
+                DisplayAlert("Course Edit", " Course start date must come before the end date", "ok");
+            }
+            else if (PerformancePicker.SelectedIndex == -1 || ObjectivePicker.SelectedIndex == -1 || CourseStatus.SelectedIndex == -1)
             {
                 DisplayAlert("Course Edit", " Please select your assessments and or course status", "ok");
             }
@@ -72,7 +76,7 @@ namespace C971FrankHaltom.Views
             {
                 DisplayAlert("Course Edit", " Please only enter numbers for instructor phone number", "ok");
             }
-            else if (instructorPhone.Text.Length != 7 || instructorPhone.Text.Length != 10)
+            else if (instructorPhone.Text.Length != 7 && instructorPhone.Text.Length != 10)
             {
                 DisplayAlert("Course Edit", " Phone number should  be 7 or 10 digits long", "ok");
             }
@@ -98,7 +102,7 @@ namespace C971FrankHaltom.Views
                 {
                     CrossLocalNotifications.Current.Show(performanceassessments[PerformancePicker.SelectedIndex].Name, "Due Date", 101, performanceassessments[PerformancePicker.SelectedIndex].DueDate);
                 }
-                CourseClass course;
+                CourseClass course = new CourseClass();
                 course = TermPage.SelectedCourse;
                 course.CourseTitle = CourseTitle.Text;
                 course.CourseStartDate = StartDate.Date;

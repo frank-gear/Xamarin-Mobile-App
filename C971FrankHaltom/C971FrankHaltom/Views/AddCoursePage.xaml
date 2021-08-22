@@ -3,10 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C971FrankHaltom.Views.AddCoursePage">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="CourseTitle:" FontSize="Medium" />
+            <Entry x:Name="CourseTitle" FontSize="Small"/>
+            <Label Text="Start Date:" FontSize="Medium" />
+            <DatePicker x:Name="StartDate" FontSize="Small"/>
+            <Label Text="Set Notification for Start date" FontSize="Medium" />
+            <Switch x:Name="StartSwitch"/>
+            <Label Text="End Date:" FontSize="Medium" />
+            <DatePicker x:Name="EndDate" FontSize="Small"/>
+            <Label Text="Set Notification for end date" FontSize="Medium" />
+            <Switch x:Name="endSwitch"/>
+            <Label Text="StatusOfCourse" FontSize="Medium" />
+            <Picker x:Name="CourseStatus" Title="" >
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Inprogress</x:String>
+                        <x:String>completed</x:String>
+                        <x:String>dropped</x:String>
+                        <x:String>plan to take</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Label Text="CourseNotes" FontSize="Medium" />
+            <Entry x:Name="Notes" FontSize="Small"/>
+            <Label Text="InstructorName" FontSize="Medium" />
+            <Entry x:Name="Instructorname" FontSize="Small"/>
+            <Label Text="InstructorPhone" FontSize="Medium" />
+            <Entry x:Name="instructorPhone" FontSize="Small"/>
+            <Label Text="InstructorEmail " FontSize="Medium" />
+            <Entry x:Name="Instructoremail" FontSize="Small"/>
+            <Label Text="Select Objective Assesment" FontSize="Medium" />
+            <Picker x:Name="ObjectivePicker" />
+            <Label Text="Set Notification for Objective Assessment" FontSize="Medium" />
+            <Switch x:Name="ObjectivetSwitch"/>
+            <Label Text="SelectPerformanceAssesment" FontSize="Medium" />
+            <Picker x:Name="PerformancePicker" />
+            <Label Text="Set Notification for Performance Assessment" FontSize="Medium" />
+            <Switch x:Name="PreformanceSwitch"/>
+
+
+            <Button x:Name="SaveBtn"  Text="Save" Clicked="SaveBtn_Clicked" />
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
