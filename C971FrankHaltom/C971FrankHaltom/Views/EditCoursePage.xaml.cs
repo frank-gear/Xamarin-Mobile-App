@@ -107,6 +107,7 @@ namespace C971FrankHaltom.Views
                 course.InstructorName = Instructorname.Text;
                 course.InstructorPhone = instructorPhone.Text;
                 course.InstructorEmail = Instructoremail.Text;
+                //error being caused becuse slector index has not changed need new catch
                 course.StatusOfCourse = CourseStatus.SelectedItem.ToString();
                 course.PerformanceId = performanceassessments[PerformancePicker.SelectedIndex].AssesmentId;
                 course.PerformanceId = objectiveeassessments[ObjectivePicker.SelectedIndex].AssesmentId;
