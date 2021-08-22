@@ -59,24 +59,24 @@ namespace C971FrankHaltom.Views
             private void SaveBtn_Clicked(object sender, EventArgs e)
         {
 
-            if(CourseTitle.Text == null || Instructorname.Text == null || Instructoremail.Text == null
-                || instructorPhone.Text == null)
+            if(string.IsNullOrWhiteSpace(CourseTitle.Text) || string.IsNullOrWhiteSpace( Instructorname.Text)  || string.IsNullOrWhiteSpace( Instructoremail.Text)
+                || string.IsNullOrWhiteSpace( instructorPhone.Text))
             {
                 DisplayAlert("Course Edit", " Please Select fill in all sections", "ok");
             }
-            if(PerformancePicker.SelectedIndex == -1 || ObjectivePicker.SelectedIndex == -1 || CourseStatus.SelectedIndex == -1)
+            else if(PerformancePicker.SelectedIndex == -1 || ObjectivePicker.SelectedIndex == -1 || CourseStatus.SelectedIndex == -1)
             {
                 DisplayAlert("Course Edit", " Please select your assessments and or course status", "ok");
             }
-            if (instructorPhone.Text.Any(x => char.IsLetter(x)))
+            else if (instructorPhone.Text.Any(x => char.IsLetter(x)))
             {
                 DisplayAlert("Course Edit", " Please only enter numbers for instructor phone number", "ok");
             }
-            if (instructorPhone.Text.Length != 7 || instructorPhone.Text.Length != 10)
+            else if (instructorPhone.Text.Length != 7 || instructorPhone.Text.Length != 10)
             {
                 DisplayAlert("Course Edit", " Phone number should  be 7 or 10 digits long", "ok");
             }
-            if (!mchek(Instructoremail.Text))
+            else if (!mchek(Instructoremail.Text))
             {
                 DisplayAlert("Course Edit", " Email is not valid", "ok");
             }

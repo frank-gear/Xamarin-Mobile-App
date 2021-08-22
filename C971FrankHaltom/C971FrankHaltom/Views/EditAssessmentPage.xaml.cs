@@ -22,16 +22,18 @@ namespace C971FrankHaltom.Views
         }
         protected override void OnAppearing()
         {
-            assessments = (List<AssessmentClass>)SqlLiteDatabaseService.GetAssessmentsList();
-            Asses.ItemsSource = assessments;
-            Asses.ItemDisplayBinding = new Binding("Name");
+
+                assessments.Clear();           
+                assessments = (List<AssessmentClass>)SqlLiteDatabaseService.GetAssessmentsList();
+                Asses.ItemsSource = assessments;
+                Asses.ItemDisplayBinding = new Binding("Name");
 
         }
 
         private void Asses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AssessmentName.Text = assessments[Asses.SelectedIndex].Name;
-            DueDate.Date = assessments[Asses.SelectedIndex].DueDate;
+            //AssessmentName.Text = assessments[Asses.SelectedIndex].Name;
+            //DueDate.Date = assessments[Asses.SelectedIndex].DueDate;
 
         }
 
@@ -53,6 +55,9 @@ namespace C971FrankHaltom.Views
                 assessment.DueDate = DueDate.Date;
                 SqlLiteDatabaseService.ModifyAssessment(assessment);
                 DisplayAlert("Assessment Edit", " Modified successfully Please return to the MainPage", "ok");
+                Asses.ItemsSource.Clear();
+                Asses.SelectedIndex = -1;
+                AssessmentName.Text = "";
             }
         }
     }

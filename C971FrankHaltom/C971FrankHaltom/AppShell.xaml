@@ -99,7 +99,13 @@
     <FlyoutItem Title="EditAssessment" Icon="icon_feed.png">
         <ShellContent Route="EditAssessmentPage" ContentTemplate="{DataTemplate local:EditAssessmentPage}" />
     </FlyoutItem>
-    
+    <FlyoutItem Title="AddAssessment" Icon="icon_feed.png">
+        <ShellContent Route="AddAssessmentPage" ContentTemplate="{DataTemplate local:AddAssessmentPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="AddCourse" Icon="icon_feed.png">
+        <ShellContent Route="AddCoursePage" ContentTemplate="{DataTemplate local:AddCoursePage}" />
+    </FlyoutItem>
+
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
    

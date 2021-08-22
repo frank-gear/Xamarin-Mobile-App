@@ -34,7 +34,9 @@ namespace C971FrankHaltom
             Routing.RegisterRoute(nameof(CourseDetailsPage), typeof(CourseDetailsPage));
             Routing.RegisterRoute(nameof(EditAssessmentPage), typeof(EditAssessmentPage));
             Routing.RegisterRoute(nameof(EditCoursePage), typeof(EditCoursePage));
-            
+            Routing.RegisterRoute(nameof(AddAssessmentPage), typeof(AddAssessmentPage));
+            Routing.RegisterRoute(nameof(AddCoursePage), typeof(AddCoursePage));
+
 
 
         }

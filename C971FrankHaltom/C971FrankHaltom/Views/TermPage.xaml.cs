@@ -26,22 +26,31 @@ namespace C971FrankHaltom.Views
         {
             
             InitializeComponent();
-            
-            //term list setup
-            UpdateTermPicker();
+            //course set
+            courseList = SqlLiteDatabaseService.GetCoursesList();
+            CourseSelection.ItemsSource = (System.Collections.IList)courseList;
+            CourseSelection.ItemDisplayBinding = new Binding("CourseTitle");
+            //term set
+            termList = SqlLiteDatabaseService.GetTermsList();
+            TermSelection.ItemsSource = (System.Collections.IList)termList;
+            TermSelection.ItemDisplayBinding = new Binding("TermTitle");
 
-            //course list setup
-            UpdateCourseList();
-                    
-            //class picker list
+            OnAppearing();
 
 
         }
+        protected override void OnAppearing()
+        {
+            UpdateTermPicker();
+            
+        }
         public void UpdateCourseList()
         {
+            courseList.Clear();
+            CourseSelection.ItemsSource.Clear();
             courseList = SqlLiteDatabaseService.GetCoursesList();
             CourseSelection.ItemsSource = (System.Collections.IList)courseList;
-            AddTermPage.addCourseList = SqlLiteDatabaseService.GetCoursesList();
+            //AddTermPage.addCourseList = SqlLiteDatabaseService.GetCoursesList();
             CourseSelection.ItemDisplayBinding = new Binding("CourseTitle");
 
 
@@ -49,9 +58,10 @@ namespace C971FrankHaltom.Views
 
         public void UpdateTermPicker()
         {
+            termList.Clear();
+            TermSelection.ItemsSource.Clear();
             termList = SqlLiteDatabaseService.GetTermsList();
-            TermSelection.ItemsSource = (System.Collections.IList)termList;
-            TermSelection.SelectedIndex = -1;
+            TermSelection.ItemsSource = (System.Collections.IList)termList;           
             TermSelection.ItemDisplayBinding = new Binding("TermTitle");
 
 
@@ -67,17 +77,24 @@ namespace C971FrankHaltom.Views
 
         private async void Delete_Clicked(object sender, EventArgs e)
         {
-
-            TermClass selectedTerm = (TermClass)TermSelection.SelectedItem;
+            if (TermSelection.SelectedIndex == -1)
+            {
+                DisplayAlert("Term Delete", " Please Select term to delete", "ok");
+                return;
+            }
+                TermClass selectedTerm = (TermClass)TermSelection.SelectedItem;
 
             bool answer = await (DisplayAlert("DeleteTerm", " delete this term?", "Yes", "No"));
 
+            
             if (answer == true)
             {
                 //var termid = selectedTerm.TermId;
                 SqlLiteDatabaseService.DeleteTerm(selectedTerm);
-
+                TermSelection.SelectedIndex = -1;
                 UpdateTermPicker();
+                
+                
 
 
 

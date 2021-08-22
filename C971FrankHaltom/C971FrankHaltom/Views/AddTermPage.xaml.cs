@@ -51,7 +51,7 @@ namespace C971FrankHaltom.Views
             }
 
             else
-                    {
+            {
                         TermClass addTerm = new TermClass();
                         addTerm.TermTitle = Termtitle.Text;
                         addTerm.TermStartDate = StartDate.Date;
@@ -69,8 +69,9 @@ namespace C971FrankHaltom.Views
                         selectCourse = (CourseClass)Course6.SelectedItem;
                         addTerm.Course6 = selectCourse.CourseId;
                         SqlLiteDatabaseService.CreateTerm(addTerm);
-                        TermPage.termList = SqlLiteDatabaseService.GetTermsList();
-                DisplayAlert("Add Term", " Term Created successfully Please return to the MainPage", "ok");
+                        
+                        
+                        DisplayAlert("Add Term", " Term Created successfully Please return to the MainPage", "ok");
             }
             
         }
