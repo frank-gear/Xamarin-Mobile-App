@@ -64,9 +64,9 @@ namespace C971FrankHaltom.Views
             {
                 DisplayAlert("Course Edit", " Please Select fill in all sections", "ok");
             }
-            if(PerformancePicker.SelectedIndex == -1 || ObjectivePicker.SelectedIndex == -1)
+            if(PerformancePicker.SelectedIndex == -1 || ObjectivePicker.SelectedIndex == -1 || CourseStatus.SelectedIndex == -1)
             {
-                DisplayAlert("Course Edit", " Please select your assessments", "ok");
+                DisplayAlert("Course Edit", " Please select your assessments and or course status", "ok");
             }
             if (instructorPhone.Text.Any(x => char.IsLetter(x)))
             {
