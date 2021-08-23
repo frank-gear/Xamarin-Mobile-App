@@ -13,8 +13,8 @@ namespace C971FrankHaltom.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TermPage : ContentPage
     {
-        public static IList<Models.TermClass> termList;
-        public static IList<Models.CourseClass> courseList;
+        public static IList<Models.TermClass> termList = SqlLiteDatabaseService.GetTermsList();
+        public static IList<Models.CourseClass> courseList = SqlLiteDatabaseService.GetCoursesList();
         public static CourseClass SelectedCourse;
         public static TermClass SelectedTerm;
 
@@ -26,40 +26,26 @@ namespace C971FrankHaltom.Views
         {
             
             InitializeComponent();
-            //course set
-            courseList = SqlLiteDatabaseService.GetCoursesList();
-            CourseSelection.ItemsSource = (System.Collections.IList)courseList;
-            CourseSelection.ItemDisplayBinding = new Binding("CourseTitle");
-            //term set
-            termList = SqlLiteDatabaseService.GetTermsList();
-            TermSelection.ItemsSource = (System.Collections.IList)termList;
-            TermSelection.ItemDisplayBinding = new Binding("TermTitle");
-
             OnAppearing();
 
 
         }
         protected override void OnAppearing()
         {
-            UpdateTermPicker();
-            
-        }
-        public void UpdateCourseList()
-        {
             courseList.Clear();
-            CourseSelection.ItemsSource.Clear();
+            termList.Clear();
             courseList = SqlLiteDatabaseService.GetCoursesList();
+            termList = SqlLiteDatabaseService.GetTermsList();
+            TermSelection.ItemsSource = (System.Collections.IList)termList;
+            TermSelection.ItemDisplayBinding = new Binding("TermTitle");
             CourseSelection.ItemsSource = (System.Collections.IList)courseList;
-            //AddTermPage.addCourseList = SqlLiteDatabaseService.GetCoursesList();
             CourseSelection.ItemDisplayBinding = new Binding("CourseTitle");
-
-
         }
+
 
         public void UpdateTermPicker()
         {
             termList.Clear();
-            TermSelection.ItemsSource.Clear();
             termList = SqlLiteDatabaseService.GetTermsList();
             TermSelection.ItemsSource = (System.Collections.IList)termList;           
             TermSelection.ItemDisplayBinding = new Binding("TermTitle");
@@ -75,28 +61,22 @@ namespace C971FrankHaltom.Views
             SelectedCourse = (CourseClass)CourseSelection.SelectedItem;
         }
 
-        private async void Delete_Clicked(object sender, EventArgs e)
+        private void Delete_Clicked(object sender, EventArgs e)
         {
             if (TermSelection.SelectedIndex == -1)
             {
                 DisplayAlert("Term Delete", " Please Select term to delete", "ok");
                 return;
             }
-                TermClass selectedTerm = (TermClass)TermSelection.SelectedItem;
 
-            bool answer = await (DisplayAlert("DeleteTerm", " delete this term?", "Yes", "No"));
-
-            
-            if (answer == true)
+            else
             {
-                //var termid = selectedTerm.TermId;
+                TermClass selectedTerm = (TermClass)TermSelection.SelectedItem;
                 SqlLiteDatabaseService.DeleteTerm(selectedTerm);
                 TermSelection.SelectedIndex = -1;
                 UpdateTermPicker();
-                
-                
 
-
+                
 
             }
          

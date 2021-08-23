@@ -101,7 +101,7 @@ namespace C971FrankHaltom.Views
                 //error being caused becuse slector index has not changed need new catch
                 course.StatusOfCourse = CourseStatus.SelectedItem.ToString();
                 course.PerformanceId = performanceassessments[PerformancePicker.SelectedIndex].AssesmentId;
-                course.PerformanceId = objectiveeassessments[ObjectivePicker.SelectedIndex].AssesmentId;
+                course.ObjectiveId = objectiveeassessments[ObjectivePicker.SelectedIndex].AssesmentId;
                 SqlLiteDatabaseService.CreateCourse(course);
                 DisplayAlert("Course Add", " Course add successfully Please return to the MainPage", "ok");
             }

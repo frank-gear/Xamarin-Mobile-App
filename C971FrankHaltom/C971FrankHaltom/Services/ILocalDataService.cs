@@ -29,7 +29,7 @@ namespace C971FrankHaltom.Services
         {
             if (_database == null)
             {
-                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TermApppsDb.db3");
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TTermApppsDb.db3");
                 _database = new SQLiteConnection(dbPath);
                 _database.CreateTable<AssessmentClass>();
                 _database.CreateTable<CourseClass>();
@@ -40,15 +40,7 @@ namespace C971FrankHaltom.Services
 
             
         }
-        public static void datacheck()
-        {
-           
-          int num = _database.Table<TermClass>().Count();
-            if (num <= 0)
-            {
-                BuildData();
-            }          
-        }
+
             static public void CreateTerm(TermClass term)
         {
             _database.Insert(term);
@@ -56,7 +48,8 @@ namespace C971FrankHaltom.Services
 
         static public void DeleteTerm(TermClass term)
         {
-            _database.Execute(query: "DELETE FROM TermClass");
+            // _database.Execute(query: "DELETE FROM TermClass");
+            _database.Delete(term);
         }
         static public int GetCourseId(string name)
         {
@@ -116,25 +109,31 @@ namespace C971FrankHaltom.Services
         static public void BuildData()
         {
             // create assessments
-            CreateAssess(new AssessmentClass("MidTermTest", "Objective", new DateTime(2021, 10, 01)));
-            CreateAssess(new AssessmentClass("FinalProject", "Performance", new DateTime(2021, 11, 25)));
+            int num = _database.Table<AssessmentClass>().Count();
+            if (num <= 0)
+            {
+                CreateAssess(new AssessmentClass("MidTermTest", "Objective", new DateTime(2021, 10, 01)));
+                CreateAssess(new AssessmentClass("FinalProject", "Performance", new DateTime(2021, 11, 25)));
+            }
             //create classes
-            CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress","Do your best!", "Billy Frank Haltom", "4237827613", "bhaltom@wgu.edu", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
-            CreateCourse(new CourseClass("History101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Sarah", "8888888888", "teach3@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
-            CreateCourse(new CourseClass("Dancing101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Jess", "2222222222", "teach5@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
-            CreateCourse(new CourseClass("Lit101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Larry", "6666666666", "teach1@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
-            CreateCourse(new CourseClass("Baseball", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Tad", "7777777777", "teach2@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
-            CreateCourse(new CourseClass("Math101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Barry", "9999999999", "teach4@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
-            CreateTerm(new TermClass("Term 1", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), GetCourseId("MobileAppDevelopment C971"), GetCourseId("History101"), GetCourseId("Dancing101"), GetCourseId("Lit101"), GetCourseId("Baseball"), GetCourseId("Math101")));
-            //CreateTerm(new TermClass("Term 2", new DateTime(2021, 12, 01), new DateTime(2022, 03, 01), 6, 7, 8, 9, 10, 11));
+            num = _database.Table<CourseClass>().Count();
+            if (num <= 0)
+            {
+                CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "4237827613", "bhaltom@wgu.edu", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+                CreateCourse(new CourseClass("History101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Sarah", "8888888888", "teach3@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+                CreateCourse(new CourseClass("Dancing101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Jess", "2222222222", "teach5@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+                CreateCourse(new CourseClass("Lit101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Larry", "6666666666", "teach1@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+                CreateCourse(new CourseClass("Baseball", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Tad", "7777777777", "teach2@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
+                CreateCourse(new CourseClass("Math101", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Barry", "9999999999", "teach4@gmail.com", GetAssessId("MidTermTest"), GetAssessId("FinalProject")));
 
+            }
+            //create term
+            num = _database.Table<TermClass>().Count();
+            if (num <= 0)
+            {
+                CreateTerm(new TermClass("Term 1", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), GetCourseId("MobileAppDevelopment C971"), GetCourseId("History101"), GetCourseId("Dancing101"), GetCourseId("Lit101"), GetCourseId("Baseball"), GetCourseId("Math101")));
 
-            //CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            //CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            //CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            //CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            //CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
-            //CreateCourse(new CourseClass("MobileAppDevelopment C971", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), "in progress", "Do your best!", "Billy Frank Haltom", "(423)782-7613", "bhaltom@wgu.edu", "MidTermTest", new DateTime(2021, 10, 01), "FinalProject", new DateTime(2021, 11, 25)));
+            }
 
         }
 

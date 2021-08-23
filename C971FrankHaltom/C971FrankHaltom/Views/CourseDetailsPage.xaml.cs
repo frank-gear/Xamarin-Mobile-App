@@ -15,7 +15,7 @@ namespace C971FrankHaltom.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseDetailsPage : ContentPage
     {
-        public static CourseClass CourseDetails;
+        public static CourseClass CourseDetails = new CourseClass();
         private static List<string> send = new List<string>();
         
         public CourseDetailsPage()
@@ -41,7 +41,7 @@ namespace C971FrankHaltom.Views
             }
             else
             {
-                CourseDetails = TermPage.SelectedCourse;
+                CourseDetails = SqlLiteDatabaseService.GetCourse(TermPage.SelectedCourse.CourseId);
                 SetDataview();
             }
         }
@@ -62,10 +62,10 @@ namespace C971FrankHaltom.Views
         }
         private  void sendemail_Clicked(object sender, EventArgs e)
         {
-            
-            if (emailshare.Text == null)
+
+            if (!EditCoursePage.Mchek(emailshare.Text) || string.IsNullOrWhiteSpace(emailshare.Text))
             {
-                 DisplayAlert("endter email", "enter an email address", "OK");
+                 DisplayAlert("endter email", "enter a valid email address to share notes", "OK");
             }
             else
             {

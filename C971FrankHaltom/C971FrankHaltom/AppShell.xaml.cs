@@ -17,8 +17,7 @@ namespace C971FrankHaltom
         public AppShell()
         {
             SqlLiteDatabaseService.Initialize();
-            SqlLiteDatabaseService.datacheck();
-            //Term = SqlLiteDatabaseService.GetTerm();
+            SqlLiteDatabaseService.BuildData();
             InitializeComponent();
             
 

@@ -58,6 +58,9 @@ namespace C971FrankHaltom.Views
                 Asses.ItemsSource.Clear();
                 Asses.SelectedIndex = -1;
                 AssessmentName.Text = "";
+                assessments = (List<AssessmentClass>)SqlLiteDatabaseService.GetAssessmentsList();
+                Asses.ItemsSource = assessments;
+                Asses.ItemDisplayBinding = new Binding("Name");
             }
         }
     }

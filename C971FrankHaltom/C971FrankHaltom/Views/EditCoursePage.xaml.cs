@@ -37,13 +37,17 @@ namespace C971FrankHaltom.Views
                 Instructorname.Text = TermPage.SelectedCourse.InstructorName;
                 instructorPhone.Text = TermPage.SelectedCourse.InstructorPhone;
                 Instructoremail.Text = TermPage.SelectedCourse.InstructorEmail;
+                performanceassessments.Clear();
+                objectiveeassessments.Clear();
+                performanceassessments = (List<AssessmentClass>)SqlLiteDatabaseService.GetPerAssessmentsList();
+                objectiveeassessments = (List<AssessmentClass>)SqlLiteDatabaseService.GetObjAssessmentsList();
                 PerformancePicker.ItemsSource = performanceassessments;
-                PerformancePicker.ItemDisplayBinding = new Binding("Name");
                 ObjectivePicker.ItemsSource = objectiveeassessments;
+                PerformancePicker.ItemDisplayBinding = new Binding("Name");
                 ObjectivePicker.ItemDisplayBinding = new Binding("Name");
             }           
         }
-        bool mchek(string x)
+        public static bool Mchek(string x)
         {
             try
             {
@@ -80,7 +84,7 @@ namespace C971FrankHaltom.Views
             {
                 DisplayAlert("Course Edit", " Phone number should  be 7 or 10 digits long", "ok");
             }
-            else if (!mchek(Instructoremail.Text))
+            else if (!Mchek(Instructoremail.Text))
             {
                 DisplayAlert("Course Edit", " Email is not valid", "ok");
             }

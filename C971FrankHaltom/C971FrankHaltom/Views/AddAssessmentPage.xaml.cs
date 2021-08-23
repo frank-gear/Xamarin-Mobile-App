@@ -38,6 +38,7 @@ namespace C971FrankHaltom.Views
                 assessment.Type = type.SelectedItem.ToString();
                 assessment.DueDate = DueDate.Date;
                 SqlLiteDatabaseService.CreateAssess(assessment);
+                DisplayAlert("Assessment Creation", " Created successfully Please return to the MainPage", "ok");
             }
         }
     }
