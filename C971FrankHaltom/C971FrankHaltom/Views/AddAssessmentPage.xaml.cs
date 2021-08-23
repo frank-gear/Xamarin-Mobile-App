@@ -27,12 +27,14 @@ namespace C971FrankHaltom.Views
                 DisplayAlert("AssesmentAdd", " Please Select fill in all sections", "ok");
                 return;
             }
-            else if (Duedateswitch.IsToggled)
-            {
-                CrossLocalNotifications.Current.Show(AssessmentName.Text, "Due Date", 101, DueDate.Date);
-            }
+
             else
             {
+                if (Duedateswitch.IsToggled)
+                {
+                    //CrossLocalNotifications.Current.Show(AssessmentName.Text, "Due Date", 101, DueDate.Date);
+                    SqlLiteDatabaseService.CreatePersistantNotification(AssessmentName.Text, "Due Date", DueDate.Date);
+                }
                 AssessmentClass assessment = new AssessmentClass();
                 assessment.Name = AssessmentName.Text;
                 assessment.Type = type.SelectedItem.ToString();

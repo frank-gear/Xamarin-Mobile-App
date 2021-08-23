@@ -16,32 +16,47 @@ namespace C971FrankHaltom.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditTermPage : ContentPage
     {
-        public static IList<Models.CourseClass> addCourseList;
+        public static IList<Models.CourseClass> addCourseList = SqlLiteDatabaseService.GetCoursesList();
         public static CourseClass selectCourse;
         public static TermClass addTerm;
         public EditTermPage()
         {
             InitializeComponent();
-            SetPickers();
-            Termtitle.Placeholder = TermPage.SelectedTerm.TermTitle;
-            StartDate.Date = TermPage.SelectedTerm.TermStartDate;
-            EndDate.Date = TermPage.SelectedTerm.TermEndtDate; ;
+            OnAppearing();
+
         }
         public void SetPickers()
         {
-            Course1.ItemsSource = (System.Collections.IList)TermPage.courseList;
+            Course1.ItemsSource = (System.Collections.IList)addCourseList;
             Course1.ItemDisplayBinding = new Binding("CourseTitle");
-            Course2.ItemsSource = (System.Collections.IList)TermPage.courseList;
+            Course2.ItemsSource = (System.Collections.IList)addCourseList;
             Course2.ItemDisplayBinding = new Binding("CourseTitle");
-            Course3.ItemsSource = (System.Collections.IList)TermPage.courseList;
+            Course3.ItemsSource = (System.Collections.IList)addCourseList;
             Course3.ItemDisplayBinding = new Binding("CourseTitle");
-            Course4.ItemsSource = (System.Collections.IList)TermPage.courseList;
+            Course4.ItemsSource = (System.Collections.IList)addCourseList;
             Course4.ItemDisplayBinding = new Binding("CourseTitle");
-            Course5.ItemsSource = (System.Collections.IList)TermPage.courseList;
+            Course5.ItemsSource = (System.Collections.IList)addCourseList;
             Course5.ItemDisplayBinding = new Binding("CourseTitle");
-            Course6.ItemsSource = (System.Collections.IList)TermPage.courseList;
+            Course6.ItemsSource = (System.Collections.IList)addCourseList;
             Course6.ItemDisplayBinding = new Binding("CourseTitle");
 
+        }
+        protected override void OnAppearing()
+        {
+            if (TermPage.SelectedTerm == null)
+            {
+                DisplayAlert("Term Edit", " Please Select Term to edit", "ok");
+                return;
+            }
+            else
+            {
+                addCourseList.Clear();
+                addCourseList = SqlLiteDatabaseService.GetCoursesList();
+                SetPickers();
+                Termtitle.Placeholder = TermPage.SelectedTerm.TermTitle;
+                StartDate.Date = TermPage.SelectedTerm.TermStartDate;
+                EndDate.Date = TermPage.SelectedTerm.TermEndtDate; ;
+            }
         }
 
         private void SaveBtn_Clicked(object sender, EventArgs e)

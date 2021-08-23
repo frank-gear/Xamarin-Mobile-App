@@ -75,20 +75,20 @@ namespace C971FrankHaltom.Views
             else
             {
                 if (StartSwitch.IsToggled)
-                {
-                    CrossLocalNotifications.Current.Show(CourseTitle.Text, "Start Date", 101, StartDate.Date);
+                {                   
+                    SqlLiteDatabaseService.CreatePersistantNotification(CourseTitle.Text, "Start Date", StartDate.Date);
                 }
                 if (endSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show(CourseTitle.Text, "End Date", 101, EndDate.Date);
+                    SqlLiteDatabaseService.CreatePersistantNotification(CourseTitle.Text, "End Date", EndDate.Date);
                 }
                 if (ObjectivetSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show(objectiveeassessments[ObjectivePicker.SelectedIndex].Name, "Due Date", 101, objectiveeassessments[ObjectivePicker.SelectedIndex].DueDate);
+                    SqlLiteDatabaseService.CreatePersistantNotification(objectiveeassessments[ObjectivePicker.SelectedIndex].Name, "Due Date", objectiveeassessments[ObjectivePicker.SelectedIndex].DueDate);
                 }
                 if (PreformanceSwitch.IsToggled)
                 {
-                    CrossLocalNotifications.Current.Show(performanceassessments[PerformancePicker.SelectedIndex].Name, "Due Date", 101, performanceassessments[PerformancePicker.SelectedIndex].DueDate);
+                    SqlLiteDatabaseService.CreatePersistantNotification(performanceassessments[PerformancePicker.SelectedIndex].Name, "Due Date", performanceassessments[PerformancePicker.SelectedIndex].DueDate);
                 }
                 CourseClass course = new CourseClass();               
                 course.CourseTitle = CourseTitle.Text;

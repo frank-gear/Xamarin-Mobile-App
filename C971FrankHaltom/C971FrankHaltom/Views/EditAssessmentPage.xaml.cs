@@ -47,7 +47,7 @@ namespace C971FrankHaltom.Views
             {
                 if (Duedateswitch.IsToggled)
                 {
-                    Plugin.LocalNotifications.CrossLocalNotifications.Current.Show(AssessmentName.Text, "Due Date", 101, DueDate.Date);
+                    SqlLiteDatabaseService.CreatePersistantNotification(AssessmentName.Text, "Due Date", DueDate.Date);
                 }
                 AssessmentClass assessment = new AssessmentClass();
                 assessment = assessments[Asses.SelectedIndex];

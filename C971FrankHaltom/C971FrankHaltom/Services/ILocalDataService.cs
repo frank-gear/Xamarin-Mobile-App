@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Plugin.LocalNotifications;
 
 namespace C971FrankHaltom.Services
 {
@@ -29,17 +30,46 @@ namespace C971FrankHaltom.Services
         {
             if (_database == null)
             {
-                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TTermApppsDb.db3");
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),  "TTTermApppsDb.db3");
                 _database = new SQLiteConnection(dbPath);
                 _database.CreateTable<AssessmentClass>();
                 _database.CreateTable<CourseClass>();
                 _database.CreateTable<TermClass>();
+                _database.CreateTable<NotificationClass>();
                 
             }
             
 
             
         }
+        static public void CreatePersistantNotification(string title, string body, DateTime date)
+        {
+            NotificationClass notification = new NotificationClass();
+            notification.Title = title;
+            notification.Body = body;
+            notification.NotifyTime = date;
+
+            _database.Insert(notification);
+            CrossLocalNotifications.Current.Show(notification.Title, notification.Body, notification.NoteId, notification.NotifyTime);
+
+
+        }
+        
+        static public int GetNotificationId(string title)
+        {
+            NotificationClass notification = new NotificationClass();
+            notification = _database.Table<NotificationClass>().Where(i => i.Title == title).FirstOrDefault();
+            int num = notification.NoteId;
+            return num;
+
+        }
+        static public NotificationClass GetNotification(int id)
+        {
+            NotificationClass notification = new NotificationClass();
+            notification = _database.Table<NotificationClass>().Where(i => i.NoteId == id).FirstOrDefault();
+            return notification;
+        }
+        
 
             static public void CreateTerm(TermClass term)
         {
@@ -133,6 +163,18 @@ namespace C971FrankHaltom.Services
             {
                 CreateTerm(new TermClass("Term 1", new DateTime(2021, 8, 01), new DateTime(2021, 12, 01), GetCourseId("MobileAppDevelopment C971"), GetCourseId("History101"), GetCourseId("Dancing101"), GetCourseId("Lit101"), GetCourseId("Baseball"), GetCourseId("Math101")));
 
+            }
+            //create notifications
+            num = _database.Table<NotificationClass>().Count();
+            if (num > 0)
+            {
+                NotificationClass notification = new NotificationClass();
+                for (int i = 1; i <= num; i++)
+                {
+                    notification = GetNotification(i);
+                    CrossLocalNotifications.Current.Show(notification.Title, notification.Body, notification.NoteId, notification.NotifyTime);
+
+                }
             }
 
         }

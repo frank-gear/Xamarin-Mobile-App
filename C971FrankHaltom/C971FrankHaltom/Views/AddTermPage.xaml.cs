@@ -18,16 +18,22 @@ namespace C971FrankHaltom.Views
     {
         
         CourseClass selectCourse;
-        public static IList<Models.CourseClass> addCourseList;
+        public static IList<Models.CourseClass> addCourseList = SqlLiteDatabaseService.GetCoursesList();
 
 
         public AddTermPage()
         {
-            addCourseList = SqlLiteDatabaseService.GetCoursesList();
+
             InitializeComponent();
+            OnAppearing();
+
+        }
+        protected override void OnAppearing()
+        {
+            addCourseList.Clear();
+            addCourseList = SqlLiteDatabaseService.GetCoursesList();
             SetPickers();
         }
-
         public void SetPickers()
         {
             Course1.ItemsSource = (System.Collections.IList)addCourseList;
